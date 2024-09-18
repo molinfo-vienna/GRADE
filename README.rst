@@ -13,15 +13,11 @@ To generate the GRAIL and X-GRAIL scores, the following steps are required:
 
 1. Install the CDPKit package using the following command:
 
-```bash
-pip install CDPKit
-```
+``pip install CDPKit```
 
 2. Run the following command to generate the GRAIL and X-GRAIL scores:
 
-```bash
-python GRADE/grade.py -i <input_file> -o <output_file> -t <type> -m <model>
-```
+``python GRADE/grade.py -i <input_file> -o <output_file> -t <type> -m <model>``
 
 where:
 `<input_file>`     is the input file that contains the protein-ligand complexes in PDB format.
@@ -38,9 +34,7 @@ the following steps are required:
 
 1. Install the package using the following command:
 
-```bash
-pip install .
-```
+``pip install .``
 
 2. Use one of the scripts in the `scripts` directory to reproduce the results.
 
