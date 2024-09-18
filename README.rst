@@ -11,12 +11,14 @@ GRADE/X-GRADE generation
 
 To generate the GRAIL and X-GRAIL scores, the following steps are required:
 
-1. Install the package using the following command:
+1. Install the CDPKit package using the following command:
+
 ```bash
-pip install .
+pip install CDPKit
 ```
 
 2. Run the following command to generate the GRAIL and X-GRAIL scores:
+
 ```bash
 python GRADE/grade.py -i <input_file> -o <output_file> -t <type> -m <model>
 ```
@@ -35,6 +37,7 @@ For your convinience, the package is available right here in this repository. To
 the following steps are required:
 
 1. Install the package using the following command:
+
 ```bash
 pip install .
 ```
@@ -54,8 +57,6 @@ The scripts are (in alphabetical order):
 * pred_validation_set.py
 * test_time.py
 * UMAP_generation.ipynb
-
-
 
 Credits
 -------
