@@ -11,12 +11,12 @@ GRADE/X-GRADE generation
 
 To generate the GRAIL and X-GRAIL scores, the following steps are required:
 
-1. Install the package using the following command:
+1. Install the package using the following command: \\
 ```bash
 pip install .
 ```
 
-2. Run the following command to generate the GRAIL and X-GRAIL scores:
+2. Run the following command to generate the GRAIL and X-GRAIL scores: \\
 ```bash
 python GRADE/grade.py -i <input_file> -o <output_file> -t <type> -m <model>
 ```
@@ -55,13 +55,7 @@ The scripts are (in alphabetical order):
 * test_time.py
 * UMAP_generation.ipynb
 
-* Free software: MIT license
 
-
-Features
---------
-
-* TODO
 
 Credits
 -------
