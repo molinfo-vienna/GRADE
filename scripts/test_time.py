@@ -37,28 +37,28 @@ for modeltype in modeltypes:
                     tmp_confidence_interval_list =[]
                     tmp_add_info_list = []
                     tmp_timelist =[]
-                    blub = ph.parameterCollector(
+                    param = ph.parameterCollector(
                                         add_information=f"{des}_{t}",
                                         modeltype=modeltype,
                                         scoretype=score,
                                     )
-                    blub = ph.parameterCollector(add_information=f"{des}",modeltype=modeltype,scoretype=score)
+                    param = ph.parameterCollector(add_information=f"{des}",modeltype=modeltype,scoretype=score)
                     x_train,x_test,y_train,y_test = ph.prepare_data(score,
                     f"../data/Descriptors/PDBbind_refined_set_{des}.csv",
                     f"../data/Descriptors/PDBbind_{t}_set_{des}.csv",
                     f"../data/exp_data/PDBbind_refined_set_{k}.csv",
                     f"../data/exp_data/PDBbind_{t}_set_all.csv",
                     f"{des}")
-                    blub.set_trainingdata(x_train,y_train)
-                    blub.set_testingdata(x_test,y_test)
-                    blub.set_datatype(k)
-                    blub.train_and_save_model(savepath="../models/")
+                    param.set_trainingdata(x_train,y_train)
+                    param.set_testingdata(x_test,y_test)
+                    param.set_datatype(k)
+                    param.train_and_save_model(savepath="../models/")
                     for i in range(10):
                         start = time.time()
-                        blub.phantomtest(loadpath="../models/")
+                        param.phantomtest(loadpath="../models/")
                         end = time.time()
-                        # blub.plot_phantomtest("../plots/")
-                        modeltype,scoret,datatype,mae,mse,sd,pearsonr,confidence_interval,r_2,add_info = blub.get_stats()
+                        # param.plot_phantomtest("../plots/")
+                        modeltype,scoret,datatype,mae,mse,sd,pearsonr,confidence_interval,r_2,add_info = param.get_stats()
                         tmp_modeltype_list.append(modeltype)
                         tmp_scoretype_list.append(scoret)
                         tmp_datatype_list.append(datatype)

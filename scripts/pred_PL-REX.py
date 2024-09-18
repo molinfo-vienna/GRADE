@@ -31,14 +31,14 @@ for system in os.listdir("/data/shared/datasets/PL-REX/"):
             for modeltype in modeltypes:
                 for score in scoretypes:
                     for des in descriptors:
-                        blub = ph.parameterCollector(add_information=f"{des}",modeltype=modeltype,scoretype=score)
+                        param = ph.parameterCollector(add_information=f"{des}",modeltype=modeltype,scoretype=score)
                         x_train,x_test,y_train,y_test = ph.prepare_data(score,
                         f"../data/Descriptors/PDBbind_refined_set_{des}.csv",
                         f"../data/Descriptors/PDBbind_general_set_{des}.csv",
                         f"../data/exp_data/PDBbind_refined_set_{k}.csv",
                         f"../data/exp_data/PDBbind_general_set_all.csv",
                         f"{des}")
-                        blub.set_trainingdata(x_train,y_train)
+                        param.set_trainingdata(x_train,y_train)
                         
                         df_exp = pd.read_csv(f"/data/shared/datasets/PL-REX/{system}/experimental_dG.txt", delim_whitespace=True, comment='#', header=None, names=['ID', 'BindingFreeEnergy'])
                         df_exp = df_exp.sort_values(by='ID')
@@ -55,12 +55,12 @@ for system in os.listdir("/data/shared/datasets/PL-REX/"):
                         y_test = y_test.reshape(-1)
                         x_test = np.array(df_desc)
                         
-                        blub.set_testingdata(x_test,y_test)
-                        blub.set_datatype(f"{k}")
-                        blub.train_and_save_model(savepath="../models/")
-                        blub.phantomtest(loadpath="../models/")
-                        modeltype,scoret,datatype,mae,mse, sd,pearsonr,confidence_interval,r_2,spearman_r,add_info = blub.get_stats(spearman=True)
-                        # blub.plot_phantomtest("../plots/",name=f"{system}_{modeltype}_{scoret}_{datatype}_{add_info}_charged")
+                        param.set_testingdata(x_test,y_test)
+                        param.set_datatype(f"{k}")
+                        param.train_and_save_model(savepath="../models/")
+                        param.phantomtest(loadpath="../models/")
+                        modeltype,scoret,datatype,mae,mse, sd,pearsonr,confidence_interval,r_2,spearman_r,add_info = param.get_stats(spearman=True)
+                        # param.plot_phantomtest("../plots/",name=f"{system}_{modeltype}_{scoret}_{datatype}_{add_info}_charged")
                         modeltype_list.append(modeltype)
                         scoretype_list.append(scoret)
                         datatype_list.append(datatype)

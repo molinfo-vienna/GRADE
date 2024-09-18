@@ -36,7 +36,7 @@ for c in classes:
         for modeltype in modeltypes:
             for score in scoretypes:
                 for descriptor in descriptortypes:
-                    blub = ph.parameterCollector(
+                    param = ph.parameterCollector(
                         add_information=f"{descriptor}_class{c}_test", modeltype=modeltype, scoretype=score
                     )
                     x_train, x_test, y_train, y_test = ph.prepare_data(
@@ -48,12 +48,12 @@ for c in classes:
                         f"{descriptor}_class{c}_test",
                     )
                     if len(x_train) > 1 and len(y_train) > 1 and len(x_test) > 1 and len(y_test) > 1:
-                        blub.set_trainingdata(x_train, y_train)
-                        blub.set_testingdata(x_test, y_test)
-                        blub.set_datatype(f"{k}")
-                        blub.train_and_save_model(savepath="../models/")
-                        blub.phantomtest(loadpath="../models/")
-                        # blub.plot_phantomtest("../plots/")
+                        param.set_trainingdata(x_train, y_train)
+                        param.set_testingdata(x_test, y_test)
+                        param.set_datatype(f"{k}")
+                        param.train_and_save_model(savepath="../models/")
+                        param.phantomtest(loadpath="../models/")
+                        # param.plot_phantomtest("../plots/")
                         (
                             modeltype,
                             scoret,
@@ -66,7 +66,7 @@ for c in classes:
                             r_2,
                             spearman_r,
                             add_info,
-                        ) = blub.get_stats(spearman=True)
+                        ) = param.get_stats(spearman=True)
                         modeltype_list.append(modeltype)
                         scoretype_list.append(scoret)
                         datatype_list.append(datatype)
@@ -87,7 +87,7 @@ for c in classes:
                     else:
                         print(f"No data for class {c} Test ({descriptor})")
     ############################################################################################
-                    blub = ph.parameterCollector(
+                    param = ph.parameterCollector(
                         add_information=f"{descriptor}_class{c}_val", modeltype=modeltype, scoretype=score
                     )
                     x_train, x_test, y_train, y_test = ph.prepare_data(
@@ -99,12 +99,12 @@ for c in classes:
                         f"{descriptor}_class{c}_val",
                     )
                     if len(x_train) > 1 and len(y_train) > 1 and len(x_test) > 1 and len(y_test) > 1:
-                        blub.set_trainingdata(x_train, y_train)
-                        blub.set_testingdata(x_test, y_test)
-                        blub.set_datatype(f"{k}")
-                        blub.train_and_save_model(savepath="../models/")
-                        blub.phantomtest(loadpath="../models/")
-                        # blub.plot_phantomtest("../plots/")
+                        param.set_trainingdata(x_train, y_train)
+                        param.set_testingdata(x_test, y_test)
+                        param.set_datatype(f"{k}")
+                        param.train_and_save_model(savepath="../models/")
+                        param.phantomtest(loadpath="../models/")
+                        # param.plot_phantomtest("../plots/")
                         (
                             modeltype,
                             scoret,
@@ -117,7 +117,7 @@ for c in classes:
                             r_2,
                             spearman_r,
                             add_info,
-                        ) = blub.get_stats(spearman=True)
+                        ) = param.get_stats(spearman=True)
                         modeltype_list.append(modeltype)
                         scoretype_list.append(scoret)
                         datatype_list.append(datatype)
