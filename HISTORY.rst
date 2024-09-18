@@ -9,4 +9,4 @@ History
 
 1.0.0 (2024-09-18)
 
-* Making the package ready to be published.
+* Making the package ready to be published and changed location to GRADE repo.
