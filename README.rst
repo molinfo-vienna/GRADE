@@ -11,33 +11,33 @@ GRADE/X-GRADE generation
 
 To generate the GRAIL and X-GRAIL scores, the following steps are required:
 
-1. Install the package using the following command: \\
+1. Install the package using the following command:
 ```bash
 pip install .
 ```
 
-2. Run the following command to generate the GRAIL and X-GRAIL scores: \\
+2. Run the following command to generate the GRAIL and X-GRAIL scores:
 ```bash
 python GRADE/grade.py -i <input_file> -o <output_file> -t <type> -m <model>
 ```
 
 where:
-- `<input_file>` is the input file that contains the protein-ligand complexes in PDB format.
-- `<output_file>` is the output file that contains the GRAIL and X-GRAIL scores.
-- `<type>` is the type of the score that should be calculated. It can be either `GRADE` or `X-GRADE`.
+`<input_file>`     is the input file that contains the protein-ligand complexes in PDB format.
+`<output_file>`    is the output file that contains the GRAIL and X-GRAIL scores.
+`<type>`           is the type of the score that should be calculated. It can be either `GRADE` or `X-GRADE`.
 
 Repoducing the results
 -------------
 
 To reproduce the results of the paper, one has to install a package called PHANTOMDRAGON 
 (PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). 
-The package is available right here in this repository. To install the package, the following steps are required:
+For your convinience, the package is available right here in this repository. To install the package, 
+the following steps are required:
 
 1. Install the package using the following command:
 ```bash
 pip install .
 ```
-
 
 2. Use one of the scripts in the `scripts` directory to reproduce the results.
 
