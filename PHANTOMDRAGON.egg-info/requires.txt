@@ -1,0 +1,13 @@
+scikit-learn
+xgboost
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+umap-learn
+rdkit
+joblib
+CDPKit
+ipykernel
+umap-learn[plot]

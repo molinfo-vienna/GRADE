@@ -3,15 +3,18 @@
 
 This reposatory includes all scripts nececarry to calculate the GRAIL-based Descriptor (GRADE) and the extended GRAIL-based Descriptor (X-GRADE) and the scripts that are nececarry to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
 
+## Install
+
+To reproduce the results of the paper, one has to install a package called PHANTOMDRAGON 
+(PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). For your convinience, the package is available right here in this repository. To install the package, only one step is required:
+
+``pip install .``
+
+Of course one has to be in the GRADE directory for this to work. This should also install all dependencies that you need.
+
 ## GRADE/X-GRADE generation
 
-To generate the GRAIL and X-GRAIL scores, the following steps are required:
-
-1. Install the CDPKit package using the following command:
-
-``pip install CDPKit``
-
-2. Depending on your data structure, run one of the following commands to generate the GRAIL and X-GRAIL scores:
+Depending on your data structure, run one of the following commands to generate the GRAIL and X-GRAIL scores:
 
 ``calc_descr_pdb_bind.py [-h] -d COMPLEX_DATA_DIR -o OUT_CSV_FILE [-c] [-x]``
 
@@ -54,14 +57,7 @@ Calculates GRAIL affinity prediction descriptors for a PDB-file and set of input
 
 ## Repoducing the results
 
-To reproduce the results of the paper, one has to install a package called PHANTOMDRAGON 
-(PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). For your convinience, the package is available right here in this repository. To install the package, only one step is required:
-
-1. Install the package using the following command:
-
-``pip install .``
-
-Afterwords you can use one of the scripts in the `scripts` directory to reproduce the results.
+You can use one of the scripts in the `scripts` directory to reproduce the results.
 
 The scripts are (in alphabetical order):
 
@@ -85,9 +81,9 @@ The scripts are (in alphabetical order):
 
 ## Credits
 
-CDPKit and the GRADE and X-GRADE implementation was done by Thomas Seidel
+CDPKit and the GRADE and X-GRADE implementation was done by Thomas Seidel (https://github.com/seidelt)
 
-PHANTOMDRAGON and all testing was done by Christian  Fellinger
+PHANTOMDRAGON and all testing was done by Christian  Fellinger (https://github.com/Dragon3221)
 
 This package was created with the help of Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 

@@ -1,2 +1,0 @@
-[console_scripts]
-phantomdragon = phantomdragon.cli:main
