@@ -22,7 +22,7 @@ Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files 
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
-| `-h`, `--help`       | Show this help message and exit                                                                               | No       | N/A         |
+| `-h` or `--help`       | Show this help message and exit                                                                               | No       | N/A         |
 | `-d COMPLEX_DATA_DIR`| The directory containing the ligand-protein complexes to process, organized in PDBBind manner                   | Yes      | N/A         |
 | `-o OUT_CSV_FILE`    | The path of the output CSV-file containing the descriptor values calculated for each input complex               | Yes      | N/A         |
 | `-c`                 | Change protonation of acidic/basic groups to a state likely at pH7                                              | No       | false       |
@@ -34,7 +34,7 @@ Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files 
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
-| `-h`, `--help`       | Show this help message and exit                                                                               | No       | N/A         |
+| `-h` or `--help`       | Show this help message and exit                                                                               | No       | N/A         |
 | `-d COMPLEX_DATA_DIR`| The directory containing the ligand-protein complexes to process, organized in PL-REX manner                   | Yes      | N/A         |
 | `-o OUT_CSV_FILE`    | The path of the output CSV-file containing the descriptor values calculated for each input complex               | Yes      | N/A         |
 | `-c`                 | Change protonation of acidic/basic groups to a state likely at pH7                                              | No       | false       |
@@ -46,7 +46,7 @@ Calculates GRADE/X-GRADE for a PDB-file and set of input ligands.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
-| `-h`, `--help`       | Show this help message and exit                                                                               | No       | N/A         |
+| `-h` or `--help`       | Show this help message and exit                                                                               | No       | N/A         |
 | `-p PDB_FILE`        | The receptor PDB-file                                                                                           | Yes      | N/A         |
 | `-l LIG_FILE`        | The file providing the ligands                                                                                  | Yes      | N/A         |
 | `-o OUT_CSV_FILE`    | The path of the output CSV-file containing the descriptors calculated for each input ligand                     | Yes      | N/A         |
