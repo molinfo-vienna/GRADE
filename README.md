@@ -1,7 +1,7 @@
 
 # GRADE
 
-This reposatory includes all scripts nececarry to calculate the GRAIL-based Descriptor (GRADE) and the extended GRAIL-based Descriptor (X-GRADE) and the scripts that are nececarry to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
+This reposatory includes all scripts nececarry to calculate the GRAil-based DEscriptor (GRADE) and the eXtended GRAil-based DEscriptor (X-GRADE) and the scripts that are nececarry to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
 
 ## Install
 
@@ -14,11 +14,11 @@ Of course one has to be in the GRADE directory for this to work. This should als
 
 ## GRADE/X-GRADE generation
 
-Depending on your data structure, run one of the following commands to generate the GRAIL and X-GRAIL scores:
+Depending on your data structure, run one of the following commands to generate GRADE or X-GRADE:
 
 ``calc_descr_pdb_bind.py [-h] -d COMPLEX_DATA_DIR -o OUT_CSV_FILE [-c] [-x]``
 
-Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner.
+Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
@@ -30,7 +30,7 @@ Calculates GRAIL affinity prediction descriptors for a set of input ligand-prote
 
 ``calc_descr_PL_REX.py [-h] -d COMPLEX_DATA_DIR -o OUT_CSV_FILE [-c] [-x]``
 
-Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner.
+Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
@@ -42,7 +42,7 @@ Calculates GRAIL affinity prediction descriptors for a set of input ligand-prote
 
 ``calc_descr_pdb_ligands.py [-h] -p PDB_FILE -l LIG_FILE -o OUT_CSV_FILE [-x] [-c]``
 
-Calculates GRAIL affinity prediction descriptors for a PDB-file and set of input ligands.
+Calculates GRADE/X-GRADE for a PDB-file and set of input ligands.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
@@ -64,9 +64,9 @@ The scripts are (in alphabetical order):
 | Script Name                | Description                                                                                           | Type               |
 |----------------------------|-------------------------------------------------------------------------------------------------------|--------------------|
 | `3DQSAR_GRADE.ipynb`       | Performs 3D QSAR analysis using parts of GRADE and X-GRADE.    | Jupyter Notebook   |
-| `calc_descr_pdb_bind.py`   | Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner. (see above) | Python Script       |
-| `calc_descr_pdb_ligands.py`| Calculates GRAIL affinity prediction descriptors for a PDB-file and set of input ligands. (see above) | Python Script       |
-| `calc_descr_PL-REX.py`     | Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner. (see above) | Python Script       |
+| `calc_descr_pdb_bind.py`   | Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner. (see above) | Python Script       |
+| `calc_descr_pdb_ligands.py`| Calculates GRADE/X-GRADE for a PDB-file and set of input ligands. (see above) | Python Script       |
+| `calc_descr_PL-REX.py`     | Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner. (see above) | Python Script       |
 | `create_core_set_data.py`  | Creates the PDBbind core dataset for model evaluation.    | Python Script       |
 | `create_general_set_data.py`| Creates the PDBbind general set for model testing. | Python Script       |
 | `create_refined_set_data.py`| Creates the PDBbind refined set for modle training. | Python Script       |
