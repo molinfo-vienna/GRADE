@@ -10,14 +10,14 @@ with open('README.md') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ["scikit-learn","xgboost","numpy","pandas","matplotlib","seaborn","scipy", "umap-learn", "rdkit","joblib","CDPKit","ipykernel","umap-learn[plot]"]
+requirements = ["scikit-learn","xgboost","numpy==1.21.5","pandas","matplotlib","seaborn","scipy", "umap-learn", "rdkit","joblib","CDPKit","ipykernel","umap-learn[plot]"]
 
 test_requirements = [ ]
 
 setup(
     author="Christian Fellinger, Thomas Seidel",
     author_email='christian.fellinger@univie.ac.at, thomas.seidel@univie.ac.at',
-    python_requires='>=3.6',
+    python_requires='>3.7,<3.11',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

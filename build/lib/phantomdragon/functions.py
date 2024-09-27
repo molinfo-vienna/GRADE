@@ -68,6 +68,22 @@ def combine(list1, list2, list3):
 
 
 def prepare_data(
+    """
+    Prepare the data for training and testing.
+    Args:
+        scoretype (str): The type of score to use.
+        featurepath_train (str): The file path of the training feature data.
+        featurepath_test (str): The file path of the testing feature data.
+        experimentpath_train (str): The file path of the training experiment data.
+        experimentpath_test (str): The file path of the testing experiment data.
+        add_information (str): The type of additional information to include.
+        sh (bool, optional): Whether to shuffle the data. Defaults to True.
+        identifier (str, optional): The identifier column name. Defaults to 'PDB code'.
+        experiment_identifier (str, optional): The experiment identifier column name. Defaults to 'Affinity Data Type'.
+        polynomial (bool, optional): Whether to include polynomial features. Defaults to False.
+    Returns:
+        tuple: A tuple containing the prepared training and testing features, as well as the corresponding scores.
+    """
     scoretype,
     featurepath_train,
     featurepath_test,
@@ -186,36 +202,108 @@ class parameterCollector:
         self.r_2 = None
 
     def get_data(self):
+        """
+        Retrieves the training and testing data.
+
+        Returns:
+            tuple: A tuple containing the training and testing data in the following order:
+                - x_train (numpy.ndarray): The training input data.
+                - x_test (numpy.ndarray): The testing input data.
+                - y_train (numpy.ndarray): The training target data.
+                - y_test (numpy.ndarray): The testing target data.
+        """
         x_train, y_train = self.get_trainingdata()
         x_test, y_test = self.get_testingdata()
         return x_train, x_test, y_train, y_test
 
     def get_trainingdata(self):
+        """
+        Returns the training data.
+
+        Returns:
+            tuple: A tuple containing the features_train and scores_train.
+        """
         return self.features_train, self.scores_train
 
     def get_testingdata(self):
+        """
+        Returns the testing data.
+
+        Returns:
+            tuple: A tuple containing the features_test and scores_test.
+        """
         return self.features_test, self.scores_test
     
     def get_predicted_values(self):
+        """
+        Returns the predicted values.
+
+        Returns:
+            list: The predicted values.
+        """
         return self.scores_pre
 
     def set_trainingdata(self, features_train, scores_train):
+        """
+        Set the training data for the model.
+
+        Parameters:
+        - features_train: The training features.
+        - scores_train: The training scores.
+
+        Returns:
+        None
+        """
         self.features_train = features_train
         self.scores_train = scores_train
 
     def set_testingdata(self, features_test, scores_test):
+        """
+        Set the testing data for the object.
+
+        Parameters:
+        - features_test: The features of the testing data.
+        - scores_test: The scores of the testing data.
+        """
         self.features_test = features_test
         self.scores_test = scores_test
 
     def set_datatype(self, datatype):
+        """
+        Set the datatype of the object.
+
+        Parameters:
+        - datatype: The datatype to be set.
+
+        Returns:
+        None
+        """
         self.datatype = datatype
 
     def set_trainingscoretype(self, trainingscores_type):
+        """
+        Set the type of training scores.
+
+        Parameters:
+        - trainingscores_type: The type of training scores.
+
+        Returns:
+        None
+        """
         self.trainingscores_type = trainingscores_type
 
-    def load_data(
-        self, featurepath, experimentpath, split=0.2, sh=True, identifier="PDB code"
-    ):
+    def load_data(self, featurepath, experimentpath, split=0.2, sh=True, identifier="PDB code"):
+        """
+        Load data from feature and experiment files, preprocess the data, and split it into training and testing sets.
+        Parameters:
+        - featurepath (str): Path to the feature file.
+        - experimentpath (str): Path to the experiment file.
+        - split (float, optional): The proportion of the data to include in the test set. Defaults to 0.2.
+        - sh (bool, optional): Whether to shuffle the data. Defaults to True.
+        - identifier (str, optional): The identifier column name in the data. Defaults to 'PDB code'.
+        Returns:
+        None
+        """
         if " " in featurepath or " " in experimentpath:
             featurepath = featurepath.replace(" ","_")
             experimentpath = experimentpath.replace(" ","_")
@@ -286,6 +374,20 @@ class parameterCollector:
         self.scores_test = y_test
 
     def train_and_save_model(self, savepath="", additional_marker="",hyperparametersearch=False):
+        """
+        Trains a machine learning model and saves it to a file.
+
+        Args:
+            savepath (str, optional): The path where the model will be saved. Defaults to "".
+            additional_marker (str, optional): Additional marker to be added to the saved model filename. Defaults to "".
+            hyperparametersearch (bool, optional): Flag indicating whether to perform hyperparameter search. Defaults to False.
+
+        Raises:
+            ValueError: If an unexpected string is provided for the modeltype.
+
+        Returns:
+            None
+        """
         if self.modeltype == "linearRegression":
             reg = linear_model.LinearRegression()
         elif self.modeltype == "Ridge":
@@ -361,16 +463,26 @@ class parameterCollector:
         if "div" in self.scoretype:
             self.scoretype = self.scoretype.replace("div", "/")
 
-    def phantomtest(
-        self,
+    def phantomtest(self,
         testing_features=0,
         testing_scores=0,
         loadpath="",
         confidence_level=0.9,
         additional_marker="",
-        return_values=False,
-    ):
-        
+        return_values=False):
+        """
+        Perform the PhantomTest analysis.
+        Args:
+            testing_features (int, optional): The testing features. Defaults to 0.
+            testing_scores (int, optional): The testing scores. Defaults to 0.
+            loadpath (str, optional): The path to load the model. Defaults to "".
+            confidence_level (float, optional): The confidence level for the confidence interval. Defaults to 0.9.
+            additional_marker (str, optional): Additional marker for the model file. Defaults to "".
+            return_values (bool, optional): Whether to return the predicted scores. Defaults to False.
+        Returns:
+            list or None: The predicted scores if return_values is True, otherwise None.
+        """
+
         if testing_features != 0:
             self.features_test = testing_features
         if testing_scores != 0:
@@ -407,6 +519,16 @@ class parameterCollector:
             return self.scores_pre
 
     def plot_phantomtest(self, savepath,name=None):
+        """
+        Plot the test scores against the predicted scores and save the plot as an image.
+
+        Parameters:
+        - savepath (str): The path to save the plot image.
+        - name (str, optional): The name of the plot image. If not provided, a default name will be generated based on the score type, model type, and additional information.
+
+        Returns:
+        None
+        """
         res = stats.linregress(self.scores_test, self.scores_pre)
         plt.plot(self.scores_test, self.scores_pre, 'o',alpha=0.2)
 
@@ -451,6 +573,15 @@ class parameterCollector:
         plt.close()
 
     def phantomscore(self, features_test, loadpath, identifier="PDB code",):
+        """
+        Calculate the phantom score for a given set of features.
+        Parameters:
+        - features_test (str or pandas.DataFrame): Path to a CSV file containing the features or a pandas DataFrame object.
+        - loadpath (str): Path to the directory where the model files are stored.
+        - identifier (str, optional): Identifier column name in the features DataFrame. Default is "PDB code".
+        Returns:
+        - tuple: A tuple containing two arrays: PDB codes and corresponding phantom scores.
+        """
         if isinstance(features_test, str):
             self.features_test = pd.read_csv(features_test, dtype={identifier: str})
         
@@ -516,6 +647,27 @@ class parameterCollector:
         return (PDBs, scores)
 
     def get_stats(self,spearman=False):
+        def get_stats(self, spearman=False):
+            """
+            Returns the statistics of the model.
+
+            Parameters:
+                spearman (bool): If True, includes Spearman correlation coefficient in the statistics.
+
+            Returns:
+                tuple: A tuple containing the following statistics:
+                    - modeltype (str): The type of the model.
+                    - scoretype (str): The type of the score.
+                    - datatype (str): The type of the data.
+                    - mae (float): The mean absolute error.
+                    - mse (float): The mean squared error.
+                    - sd (float): The standard deviation.
+                    - r (float): The Pearson correlation coefficient.
+                    - conf_int (float): The confidence interval.
+                    - r_2 (float): The coefficient of determination.
+                    - spearman_r (float): The Spearman correlation coefficient (only included if spearman is True).
+                    - add_information (str): Additional information about the statistics.
+            """
         if spearman == False:
             return (
                 self.modeltype,

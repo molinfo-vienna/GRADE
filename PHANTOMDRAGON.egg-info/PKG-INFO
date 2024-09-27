@@ -15,11 +15,11 @@ Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
-Requires-Python: >=3.6
+Requires-Python: >3.7,<3.11
 License-File: LICENSE
 Requires-Dist: scikit-learn
 Requires-Dist: xgboost
-Requires-Dist: numpy
+Requires-Dist: numpy==1.21.5
 Requires-Dist: pandas
 Requires-Dist: matplotlib
 Requires-Dist: seaborn
@@ -34,25 +34,28 @@ Requires-Dist: umap-learn[plot]
 
 # GRADE
 
-This reposatory includes all scripts nececarry to calculate the GRAIL-based Descriptor (GRADE) and the extended GRAIL-based Descriptor (X-GRADE) and the scripts that are nececarry to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
+This reposatory includes all scripts nececarry to calculate the GRAil-based DEscriptor (GRADE) and the eXtended GRAil-based DEscriptor (X-GRADE) and the scripts that are nececarry to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
+
+## Install
+
+To reproduce the results of the paper, one has to install a package called PHANTOMDRAGON 
+(PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). For your convinience, the package is available right here in this repository. To install the package, only one step is required:
+
+``pip install .``
+
+Of course one has to be in the GRADE directory for this to work. This should also install all dependencies that you need.
 
 ## GRADE/X-GRADE generation
 
-To generate the GRAIL and X-GRAIL scores, the following steps are required:
-
-1. Install the CDPKit package using the following command:
-
-``pip install CDPKit``
-
-2. Depending on your data structure, run one of the following commands to generate the GRAIL and X-GRAIL scores:
+Depending on your data structure, run one of the following commands to generate GRADE or X-GRADE:
 
 ``calc_descr_pdb_bind.py [-h] -d COMPLEX_DATA_DIR -o OUT_CSV_FILE [-c] [-x]``
 
-Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner.
+Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
-| `-h`, `--help`       | Show this help message and exit                                                                               | No       | N/A         |
+| `-h` or `--help`       | Show this help message and exit                                                                               | No       | N/A         |
 | `-d COMPLEX_DATA_DIR`| The directory containing the ligand-protein complexes to process, organized in PDBBind manner                   | Yes      | N/A         |
 | `-o OUT_CSV_FILE`    | The path of the output CSV-file containing the descriptor values calculated for each input complex               | Yes      | N/A         |
 | `-c`                 | Change protonation of acidic/basic groups to a state likely at pH7                                              | No       | false       |
@@ -60,11 +63,11 @@ Calculates GRAIL affinity prediction descriptors for a set of input ligand-prote
 
 ``calc_descr_PL_REX.py [-h] -d COMPLEX_DATA_DIR -o OUT_CSV_FILE [-c] [-x]``
 
-Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner.
+Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
-| `-h`, `--help`       | Show this help message and exit                                                                               | No       | N/A         |
+| `-h` or `--help`       | Show this help message and exit                                                                               | No       | N/A         |
 | `-d COMPLEX_DATA_DIR`| The directory containing the ligand-protein complexes to process, organized in PL-REX manner                   | Yes      | N/A         |
 | `-o OUT_CSV_FILE`    | The path of the output CSV-file containing the descriptor values calculated for each input complex               | Yes      | N/A         |
 | `-c`                 | Change protonation of acidic/basic groups to a state likely at pH7                                              | No       | false       |
@@ -72,11 +75,11 @@ Calculates GRAIL affinity prediction descriptors for a set of input ligand-prote
 
 ``calc_descr_pdb_ligands.py [-h] -p PDB_FILE -l LIG_FILE -o OUT_CSV_FILE [-x] [-c]``
 
-Calculates GRAIL affinity prediction descriptors for a PDB-file and set of input ligands.
+Calculates GRADE/X-GRADE for a PDB-file and set of input ligands.
 
 | Option               | Description                                                                                                    | Required | Default     |
 |----------------------|----------------------------------------------------------------------------------------------------------------|----------|-------------|
-| `-h`, `--help`       | Show this help message and exit                                                                               | No       | N/A         |
+| `-h` or `--help`       | Show this help message and exit                                                                               | No       | N/A         |
 | `-p PDB_FILE`        | The receptor PDB-file                                                                                           | Yes      | N/A         |
 | `-l LIG_FILE`        | The file providing the ligands                                                                                  | Yes      | N/A         |
 | `-o OUT_CSV_FILE`    | The path of the output CSV-file containing the descriptors calculated for each input ligand                     | Yes      | N/A         |
@@ -87,23 +90,16 @@ Calculates GRAIL affinity prediction descriptors for a PDB-file and set of input
 
 ## Repoducing the results
 
-To reproduce the results of the paper, one has to install a package called PHANTOMDRAGON 
-(PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). For your convinience, the package is available right here in this repository. To install the package, only one step is required:
-
-1. Install the package using the following command:
-
-``pip install .``
-
-Afterwords you can use one of the scripts in the `scripts` directory to reproduce the results.
+You can use one of the scripts in the `scripts` directory to reproduce the results.
 
 The scripts are (in alphabetical order):
 
 | Script Name                | Description                                                                                           | Type               |
 |----------------------------|-------------------------------------------------------------------------------------------------------|--------------------|
 | `3DQSAR_GRADE.ipynb`       | Performs 3D QSAR analysis using parts of GRADE and X-GRADE.    | Jupyter Notebook   |
-| `calc_descr_pdb_bind.py`   | Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner. (see above) | Python Script       |
-| `calc_descr_pdb_ligands.py`| Calculates GRAIL affinity prediction descriptors for a PDB-file and set of input ligands. (see above) | Python Script       |
-| `calc_descr_PL-REX.py`     | Calculates GRAIL affinity prediction descriptors for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner. (see above) | Python Script       |
+| `calc_descr_pdb_bind.py`   | Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PDBbind manner. (see above) | Python Script       |
+| `calc_descr_pdb_ligands.py`| Calculates GRADE/X-GRADE for a PDB-file and set of input ligands. (see above) | Python Script       |
+| `calc_descr_PL-REX.py`     | Calculates GRADE/X-GRADE for a set of input ligand-protein complexes. The Files have to be organized in PL-REX manner. (see above) | Python Script       |
 | `create_core_set_data.py`  | Creates the PDBbind core dataset for model evaluation.    | Python Script       |
 | `create_general_set_data.py`| Creates the PDBbind general set for model testing. | Python Script       |
 | `create_refined_set_data.py`| Creates the PDBbind refined set for modle training. | Python Script       |
@@ -118,9 +114,9 @@ The scripts are (in alphabetical order):
 
 ## Credits
 
-CDPKit and the GRADE and X-GRADE implementation was done by Thomas Seidel
+CDPKit and the GRADE and X-GRADE implementation was done by Thomas Seidel (https://github.com/seidelt)
 
-PHANTOMDRAGON and all testing was done by Christian  Fellinger
+PHANTOMDRAGON and all testing was done by Christian  Fellinger (https://github.com/Dragon3221)
 
 This package was created with the help of Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 

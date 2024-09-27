@@ -1,6 +1,6 @@
 scikit-learn
 xgboost
-numpy
+numpy==1.21.5
 pandas
 matplotlib
 seaborn
