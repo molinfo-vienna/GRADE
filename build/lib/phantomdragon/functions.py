@@ -67,7 +67,17 @@ def combine(list1, list2, list3):
     return combinations
 
 
-def prepare_data(
+def prepare_data(scoretype,
+    featurepath_train,
+    featurepath_test,
+    experimentpath_train,
+    experimentpath_test,
+    add_information,
+    sh=True,
+    identifier="PDB code",
+    experiment_identifier="Affinity Data Type",
+    polynomial=False,
+    ):
     """
     Prepare the data for training and testing.
     Args:
@@ -84,17 +94,8 @@ def prepare_data(
     Returns:
         tuple: A tuple containing the prepared training and testing features, as well as the corresponding scores.
     """
-    scoretype,
-    featurepath_train,
-    featurepath_test,
-    experimentpath_train,
-    experimentpath_test,
-    add_information,
-    sh=True,
-    identifier="PDB code",
-    experiment_identifier="Affinity Data Type",
-    polynomial=False,
-):
+
+
     
     if " " in featurepath_train or " " in featurepath_test or " " in experimentpath_train or " " in experimentpath_test:
         featurepath_train = featurepath_train.replace(" ","_")

@@ -39,7 +39,16 @@ This reposatory includes all scripts nececarry to calculate the GRAil-based DEsc
 ## Install
 
 To reproduce the results of the paper, one has to install a package called PHANTOMDRAGON 
-(PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). For your convinience, the package is available right here in this repository. To install the package, only one step is required:
+(PHarmacophore bAsed scoriNg funcTiOn iMplementations using DRug interAction Grail scOre calculatioNs). For your convinience, the package is available right here in this repository. To install the package, we recommend using a conda or mamba environment:
+
+``conda create -n GRADE python==3.10``
+
+This should give you a blank environment with only python and its environments installed. For this package python ``>3.7`` and ``<3.11`` is reqired.
+Then activate the environment with:
+
+``conda activate GRADE``
+
+Then install the package with:
 
 ``pip install .``
 
