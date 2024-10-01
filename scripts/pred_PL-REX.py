@@ -22,8 +22,8 @@ add_info_list = []
 system_list = []
 
 
-for system in os.listdir("/data/shared/datasets/PL-REX/"):
-    if os.path.isdir(f"/data/shared/datasets/PL-REX/{system}") and not system.startswith("."):
+for system in os.listdir("../data/Descriptors/PL-REX"):
+    if os.path.isdir(f"../data/Descriptors/PL-REX/{system}") and not system.startswith("."):
         print("-----------------------------------")
         print(f"Starting {system}")
         print("-----------------------------------")
@@ -34,33 +34,17 @@ for system in os.listdir("/data/shared/datasets/PL-REX/"):
                         param = ph.parameterCollector(add_information=f"{des}",modeltype=modeltype,scoretype=score)
                         x_train,x_test,y_train,y_test = ph.prepare_data(score,
                         f"../data/Descriptors/PDBbind_refined_set_{des}.csv",
-                        f"../data/Descriptors/PDBbind_general_set_{des}.csv",
+                        f"../data/Descriptors/PL-REX/{system}/{des}_charged.csv",
                         f"../data/exp_data/PDBbind_refined_set_{k}.csv",
-                        f"../data/exp_data/PDBbind_general_set_all.csv",
+                        f"../data/exp_data/PL-REX/{system}/experimental_dG.csv",
                         f"{des}")
-                        param.set_trainingdata(x_train,y_train)
-                        
-                        df_exp = pd.read_csv(f"/data/shared/datasets/PL-REX/{system}/experimental_dG.txt", delim_whitespace=True, comment='#', header=None, names=['ID', 'BindingFreeEnergy'])
-                        df_exp = df_exp.sort_values(by='ID')
-                        df_exp.reset_index(drop=True, inplace=True)
-                        
-                        df_desc = pd.read_csv(f"/data/shared/datasets/PL-REX/{system}/structures_pl-rex/{des}_charged.csv")
-                        df_desc = df_desc.sort_values(by='PDB code')
-                        df_desc.reset_index(drop=True, inplace=True)
-                        
-                        df_exp = df_exp.drop("ID", axis=1)
-                        df_desc = df_desc.drop("PDB code", axis=1)
-                        
-                        y_test = np.array(df_exp)
-                        y_test = y_test.reshape(-1)
-                        x_test = np.array(df_desc)
-                        
+                        param.set_trainingdata(x_train,y_train)                        
                         param.set_testingdata(x_test,y_test)
                         param.set_datatype(f"{k}")
                         param.train_and_save_model(savepath="../models/")
                         param.phantomtest(loadpath="../models/")
                         modeltype,scoret,datatype,mae,mse, sd,pearsonr,confidence_interval,r_2,spearman_r,add_info = param.get_stats(spearman=True)
-                        # param.plot_phantomtest("../plots/",name=f"{system}_{modeltype}_{scoret}_{datatype}_{add_info}_charged")
+                        param.plot_phantomtest("../plots/",name=f"{system}_{modeltype}_{scoret}_{datatype}_{add_info}_charged")
                         modeltype_list.append(modeltype)
                         scoretype_list.append(scoret)
                         datatype_list.append(datatype)
