@@ -92,7 +92,7 @@ The scripts are (in alphabetical order):
 
 CDPKit and the GRADE and X-GRADE implementation was done by Thomas Seidel (https://github.com/seidelt)
 
-PHANTOMDRAGON and all testing was done by Christian  Fellinger (https://github.com/Dragon3221)
+PHANTOMDRAGON, all testing and this Reposatory was created by Christian  Fellinger (https://github.com/Dragon3221)
 
 This package was created with the help of Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
