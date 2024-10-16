@@ -1,7 +1,7 @@
 
 # GRADE
 
-This reposatory includes all scripts nececarry to calculate the GRAil-based DEscriptor (GRADE) and the eXtended GRAil-based DEscriptor (X-GRADE) and the scripts that are nececarry to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
+This reposatory includes all scripts necessary to calculate the GRAil-based DEscriptor (GRADE) and the eXtended GRAil-based DEscriptor (X-GRADE) and the scripts that are necessary to reproduce the results of the paper "GRADE and X-GRADE: Unveiling novel Protein-Ligand Interaction Fingerprints based on GRAIL-Scores"
 
 ## Install
 
