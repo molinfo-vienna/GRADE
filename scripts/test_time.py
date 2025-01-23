@@ -13,11 +13,12 @@ coef_list = []
 confidence_interval_list =[]
 add_info_list = []
 timelist =[]
+test_val_list = []
 
 datatypes = ["all","ki","kd"]
 modeltypes = ["linearRegression","Ridge","Lasso","ElasticNet","SVR","DecisionTree","RandomForest","XGBoost"]
 scoretypes = ["pKd pKi pIC50"]
-descriptor = ["GRADE","X-GRADE"]
+descriptor = ["PLEC","GRADE","X-GRADE"]
 test_val = ["core","general"]
 
 for modeltype in modeltypes:
@@ -52,7 +53,7 @@ for modeltype in modeltypes:
                     param.set_trainingdata(x_train,y_train)
                     param.set_testingdata(x_test,y_test)
                     param.set_datatype(k)
-                    param.train_and_save_model(savepath="../models/")
+                    # param.train_and_save_model(savepath="../models/")
                     for i in range(10):
                         start = time.time()
                         param.phantomtest(loadpath="../models/")
@@ -81,13 +82,14 @@ for modeltype in modeltypes:
                     confidence_interval_list.append(tmp_confidence_interval_list[0])
                     add_info_list.append(tmp_add_info_list[0])
                     timelist.append(sum(tmp_timelist)/10)
+                    test_val_list.append(t)
 
 
-                print(k,modeltype,score,"done")
-                print("Training Set size",len(x_train))
-                print("Testing Set size",len(x_test))
+                    print(t,des,k,modeltype,score,"done")
+                    print("Training Set size",len(x_train))
+                    print("Testing Set size",len(x_test))
 
 #print(len(modeltype_list),len(featuretype_list),len(datatype_list),len(mse_list),len(pear_list),len(coef_list),len(add_info_list))
-data = {'Modeltype':modeltype_list,'Scoretype':scoretype_list,'Datatype':datatype_list,'Mean absolute error (mae)':mae_list,'Mean squared error (mse)':mse_list,'Standard Diviation (SD)':sd_list,'Pearson correlation coefficient (r)':pear_list,'90% Confidence interval':confidence_interval_list,'Coefficient of determination (r²)':coef_list,'add. information':add_info_list,'Time':timelist}
+data = {'Modeltype':modeltype_list,'Scoretype':scoretype_list,'Datatype':datatype_list,'Mean absolute error (mae)':mae_list,'Mean squared error (mse)':mse_list,'Standard Diviation (SD)':sd_list,'Pearson correlation coefficient (r)':pear_list,'90% Confidence interval':confidence_interval_list,'Coefficient of determination (r²)':coef_list,'add. information':add_info_list,'Time':timelist,'Tested on':test_val_list}
 df = pd.DataFrame(data)
-df.to_csv("../results/time_GRADE.csv")
+df.to_csv("../results/time_all.csv")

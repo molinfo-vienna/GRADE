@@ -4,7 +4,7 @@ import phantomdragon.functions as ph
 datatypes = ["all","ki","kd"]
 modeltypes = ["linearRegression","Ridge","Lasso","ElasticNet","SVR","DecisionTree","RandomForest","XGBoost"]
 scoretypes = ["delta G","Affinity Data Value","pKd pKi pIC50"]
-descriptors = ["GRADE","X-GRADE"]
+descriptors = ["PLEC","GRADE","X-GRADE"]
 
 modeltype_list = []
 scoretype_list = []
@@ -22,7 +22,7 @@ for k in datatypes:
     for modeltype in modeltypes:
         for score in scoretypes:
             for des in descriptors:
-
+                print(k,modeltype,score,f"start ({des})")
                 param = ph.parameterCollector(add_information="X-GRADE",modeltype=modeltype,scoretype=score)
                 x_train,x_test,y_train,y_test = ph.prepare_data(score,
                 f"../data/Descriptors/PDBbind_refined_set_{des}.csv",
@@ -55,4 +55,4 @@ for k in datatypes:
 print(len(modeltype_list),len(scoretype_list),len(datatype_list),len(mae_list),len(mse_list),len(sd_list),len(pear_list),len(confidence_interval_list),len(coef_list),len(spear_list),len(add_info_list))
 data = {'Modeltype':modeltype_list,'Scoretype':scoretype_list,'Datatype':datatype_list,'Mean absolute error (mae)':mae_list,'Mean squared error (mse)':mse_list,'Standard Diviation (SD)':sd_list,'Pearson correlation coefficient (r)':pear_list,'90% Confidence interval':confidence_interval_list,'Coefficient of determination (r²)':coef_list,'Spearman correlation coefficient':spear_list,'add. information':add_info_list}
 df = pd.DataFrame(data)
-df.to_csv("../results/test_results.csv")
+df.to_csv("../results/test_results_PLEC.csv")

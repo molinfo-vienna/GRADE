@@ -24,6 +24,7 @@
 import argparse
 import os
 import sys
+import time
 
 import CDPL.Chem as Chem
 import CDPL.Biomol as Biomol
@@ -166,4 +167,7 @@ def process(args):
     print('Done!')
     
 if __name__ == '__main__':
+    start_time = time.time()
     process(parseArguments())
+    end_time = time.time()
+    print('Elapsed time: %s seconds' % str(end_time - start_time))
